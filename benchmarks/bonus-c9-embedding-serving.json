@@ -1,0 +1,256 @@
+{
+ "configs": [
+  {
+   "tag": "default",
+   "extra": [],
+   "slots": "0.01.508.677 I srv    load_model: initializing, n_slots = 4, n_ctx_slot = 2048, kv_unified = 'true'",
+   "sweep": [
+    {
+     "batch": 1,
+     "median_ms": 137.1,
+     "min_ms": 125.3,
+     "max_ms": 153.8,
+     "prompt_tokens": 15,
+     "texts_per_s": 7.3,
+     "tokens_per_s": 109.4
+    },
+    {
+     "batch": 2,
+     "median_ms": 234.3,
+     "min_ms": 228.4,
+     "max_ms": 250.4,
+     "prompt_tokens": 28,
+     "texts_per_s": 8.5,
+     "tokens_per_s": 119.5
+    },
+    {
+     "batch": 4,
+     "median_ms": 454.0,
+     "min_ms": 438.6,
+     "max_ms": 501.9,
+     "prompt_tokens": 58,
+     "texts_per_s": 8.8,
+     "tokens_per_s": 127.8
+    },
+    {
+     "batch": 8,
+     "median_ms": 943.4,
+     "min_ms": 926.5,
+     "max_ms": 962.1,
+     "prompt_tokens": 121,
+     "texts_per_s": 8.5,
+     "tokens_per_s": 128.3
+    },
+    {
+     "batch": 16,
+     "median_ms": 1934.8,
+     "min_ms": 1849.0,
+     "max_ms": 1982.9,
+     "prompt_tokens": 242,
+     "texts_per_s": 8.3,
+     "tokens_per_s": 125.1
+    },
+    {
+     "batch": 32,
+     "median_ms": 3588.7,
+     "min_ms": 3516.0,
+     "max_ms": 3707.9,
+     "prompt_tokens": 484,
+     "texts_per_s": 8.9,
+     "tokens_per_s": 134.9
+    },
+    {
+     "batch": 64,
+     "median_ms": 7162.7,
+     "min_ms": 7074.5,
+     "max_ms": 7268.7,
+     "prompt_tokens": 968,
+     "texts_per_s": 8.9,
+     "tokens_per_s": 135.1
+    }
+   ],
+   "dim": 1024,
+   "ranking": [
+    [
+     0.897,
+     "Embedding serving is prefill-bound: one forward pass, no KV cache, no decode loop."
+    ],
+    [
+     0.85,
+     "RadixAttention reuses a shared prompt prefix across requests via a radix tree."
+    ],
+    [
+     0.823,
+     "Speculative decoding drafts several tokens and verifies them in one forward pass."
+    ],
+    [
+     0.813,
+     "Continuous batching lets requests join and leave the running batch every step."
+    ],
+    [
+     0.812,
+     "PagedAttention stores the KV cache in non-contiguous virtual-memory pages."
+    ],
+    [
+     0.77,
+     "Quantization to FP8 or INT4 shrinks model memory and raises throughput."
+    ],
+    [
+     0.754,
+     "Tensor parallelism splits each weight matrix across multiple GPUs."
+    ],
+    [
+     0.747,
+     "A cross-encoder reranker scores a (query, document) pair jointly."
+    ]
+   ]
+  },
+  {
+   "tag": "parallel32",
+   "extra": [
+    "--parallel",
+    "32"
+   ],
+   "slots": "0.03.029.897 I srv    load_model: initializing, n_slots = 32, n_ctx_slot = 256, kv_unified = 'false'",
+   "sweep": [
+    {
+     "batch": 1,
+     "median_ms": 126.7,
+     "min_ms": 123.7,
+     "max_ms": 129.8,
+     "prompt_tokens": 15,
+     "texts_per_s": 7.9,
+     "tokens_per_s": 118.4
+    },
+    {
+     "batch": 2,
+     "median_ms": 235.5,
+     "min_ms": 217.4,
+     "max_ms": 250.3,
+     "prompt_tokens": 28,
+     "texts_per_s": 8.5,
+     "tokens_per_s": 118.9
+    },
+    {
+     "batch": 4,
+     "median_ms": 443.3,
+     "min_ms": 417.8,
+     "max_ms": 469.1,
+     "prompt_tokens": 58,
+     "texts_per_s": 9.0,
+     "tokens_per_s": 130.8
+    },
+    {
+     "batch": 8,
+     "median_ms": 859.6,
+     "min_ms": 831.7,
+     "max_ms": 916.7,
+     "prompt_tokens": 121,
+     "texts_per_s": 9.3,
+     "tokens_per_s": 140.8
+    },
+    {
+     "batch": 16,
+     "median_ms": 1784.0,
+     "min_ms": 1749.3,
+     "max_ms": 2111.5,
+     "prompt_tokens": 242,
+     "texts_per_s": 9.0,
+     "tokens_per_s": 135.7
+    },
+    {
+     "batch": 32,
+     "median_ms": 3799.8,
+     "min_ms": 3749.8,
+     "max_ms": 3900.6,
+     "prompt_tokens": 484,
+     "texts_per_s": 8.4,
+     "tokens_per_s": 127.4
+    },
+    {
+     "batch": 64,
+     "median_ms": 7343.6,
+     "min_ms": 7282.6,
+     "max_ms": 7404.7,
+     "prompt_tokens": 968,
+     "texts_per_s": 8.7,
+     "tokens_per_s": 131.8
+    }
+   ],
+   "dim": 1024,
+   "ranking": [
+    [
+     0.897,
+     "Embedding serving is prefill-bound: one forward pass, no KV cache, no decode loop."
+    ],
+    [
+     0.85,
+     "RadixAttention reuses a shared prompt prefix across requests via a radix tree."
+    ],
+    [
+     0.823,
+     "Speculative decoding drafts several tokens and verifies them in one forward pass."
+    ],
+    [
+     0.813,
+     "Continuous batching lets requests join and leave the running batch every step."
+    ],
+    [
+     0.812,
+     "PagedAttention stores the KV cache in non-contiguous virtual-memory pages."
+    ],
+    [
+     0.77,
+     "Quantization to FP8 or INT4 shrinks model memory and raises throughput."
+    ],
+    [
+     0.754,
+     "Tensor parallelism splits each weight matrix across multiple GPUs."
+    ],
+    [
+     0.747,
+     "A cross-encoder reranker scores a (query, document) pair jointly."
+    ]
+   ]
+  }
+ ],
+ "followup_batching_check": {
+  "a_16_different_texts": {
+   "n_texts": 16,
+   "prompt_tokens": 242,
+   "median_ms": 1818.7,
+   "tokens_per_s": 133.1
+  },
+  "b_16_identical_texts": {
+   "n_texts": 16,
+   "prompt_tokens": 240,
+   "median_ms": 1844.1,
+   "tokens_per_s": 130.1
+  },
+  "c_1_text_concat_16": {
+   "n_texts": 1,
+   "prompt_tokens": 242,
+   "median_ms": 1763.2,
+   "tokens_per_s": 137.2
+  },
+  "d_1_short_text": {
+   "n_texts": 1,
+   "prompt_tokens": 15,
+   "median_ms": 134.6,
+   "tokens_per_s": 111.4
+  },
+  "llama_bench_pp16_tok_s": 213.1,
+  "llama_bench_pp256_tok_s": 233.7
+ },
+ "llama_bench_pp256_embd_toggle": {
+  "command": "llama-bench -m models/Qwen3.5-0.8B-Q4_K_M.gguf -t 6 -ngl 0 -p 256 -n 0 -r 3 -embd {0,1}, run order 0,1,0,1",
+  "embd0_tok_s": [
+   230.508788,
+   237.498278
+  ],
+  "embd1_tok_s": [
+   147.981944,
+   157.490705
+  ]
+ }
+}

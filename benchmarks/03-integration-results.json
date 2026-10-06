@@ -1,0 +1,104 @@
+{
+  "backend": "keyword overlap",
+  "mean_ms": {
+    "embed": 0.1,
+    "retrieve": 0.1,
+    "llm": 6702.8,
+    "total": 6703.4
+  },
+  "results": [
+    {
+      "query": "Why is goodput more useful than raw throughput?",
+      "answer": "Based on the provided context, **Goodput** is more useful than raw throughput because it **ignores SLOs (Service Level Objects) at saturation**.\n\nHere is the breakdown of why this makes Goodput superior:\n\n*   **SLOs are ignored at saturation:** The context states that \"Throughput at saturation ignores SLOs.\" Since Goodput calculates throughput based on requests per second (TPS) that meet targets, it fails to account for the Service Level Object constraints (which define acceptable latency and error rates) when the system is already operating at its maximum capacity.\n*   **Raw throughput is limited by SLOs:** If a system reaches saturation, raw throughput will drop to zero because no new requests can be processed. This means the system cannot meet its Service Level Object requirements (e.g., latency or error rate) even if it has the raw processing power.\n\n**Conclusion:** Goodput is more useful because it ensures that the system's performance remains aligned",
+      "contexts": [
+        {
+          "id": "goodput",
+          "score": 1.0
+        },
+        {
+          "id": "paged",
+          "score": 0.0
+        },
+        {
+          "id": "radix",
+          "score": 0.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.0,
+        "retrieve": 0.1,
+        "llm": 12809.9,
+        "total": 12810.7
+      },
+      "server_timings": {
+        "prompt_n": 151,
+        "prompt_ms": 2108.03,
+        "predicted_n": 200,
+        "predicted_ms": 6969.417
+      }
+    },
+    {
+      "query": "What problem does PagedAttention actually solve?",
+      "answer": "PagedAttention solves the problem of **internal fragmentation** in GPU memory.\n\nBy storing the KV cache in non-contiguous pages, it removes the fragmentation that would otherwise waste most of the GPU's memory.",
+      "contexts": [
+        {
+          "id": "paged",
+          "score": 1.0
+        },
+        {
+          "id": "radix",
+          "score": 0.0
+        },
+        {
+          "id": "disagg",
+          "score": 0.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.2,
+        "retrieve": 0.3,
+        "llm": 3099.9,
+        "total": 3100.8
+      },
+      "server_timings": {
+        "prompt_n": 114,
+        "prompt_ms": 923.449,
+        "predicted_n": 43,
+        "predicted_ms": 1609.61
+      }
+    },
+    {
+      "query": "When does splitting prefill and decode help?",
+      "answer": "Based on the provided context, splitting prefill and decode helps when **prefill is compute-bound and decode is memory-bandwidth-bound**.\n\nThe context explicitly states that prefill is compute-bound, meaning it requires significant processing power, while decode is memory-bandwidth-bound, meaning it requires significant data transfer speed. Therefore, splitting them allows the system to utilize compute resources for the heavy lifting of prefilling and memory bandwidth for the heavy lifting of decoding, optimizing overall throughput.",
+      "contexts": [
+        {
+          "id": "disagg",
+          "score": 2.0
+        },
+        {
+          "id": "radix",
+          "score": 1.0
+        },
+        {
+          "id": "batching",
+          "score": 1.0
+        }
+      ],
+      "embed_backend": "keyword overlap",
+      "timings_ms": {
+        "embed": 0.0,
+        "retrieve": 0.0,
+        "llm": 4198.6,
+        "total": 4198.7
+      },
+      "server_timings": {
+        "prompt_n": 113,
+        "prompt_ms": 539.656,
+        "predicted_n": 96,
+        "predicted_ms": 3118.404
+      }
+    }
+  ]
+}
